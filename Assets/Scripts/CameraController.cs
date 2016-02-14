@@ -24,6 +24,7 @@ public class CameraController : MonoBehaviour
 
 	void Update ()
     {
+        //
         // MOVEMENT
 	    if(Input.GetKey(KeyCode.A)) // Move Left
         {
