@@ -60,7 +60,7 @@ public class CameraController : MonoBehaviour
             if(this.transform.position.y > 4) // if you are not too low to the water
             {
                 transform.Translate(new Vector3(0, -1, 0));
-            }
+            } //
         }
         else if (d < 0f)
         {
