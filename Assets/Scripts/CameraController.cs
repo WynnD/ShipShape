@@ -5,7 +5,6 @@ public class CameraController : MonoBehaviour
 {
     //HANDLES MOVEMENT OF THE CAMERA
 
-
     public float movementSpeed;
     public float rotateSpeed;
     public GameObject waypoint;
@@ -21,10 +20,53 @@ public class CameraController : MonoBehaviour
         clickedScript = playerShip.GetComponent<MouseClickedMe>(); // the ClickedMeScript
     }
 	
+    void checkMousePos()
+    {
+        if (Input.mousePosition.y >= Screen.height * .98)
+            transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+        if (Input.mousePosition.y < Screen.height * .02)
+            transform.Translate(Vector3.back * movementSpeed * Time.deltaTime);
+
+        if (Input.mousePosition.x >= Screen.width * .98)
+            transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
+        if (Input.mousePosition.x < Screen.width * .02)
+            transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
+
+
+        return;
+    }
+
+
+    /*
+    int mouseAtCorner()
+        returns 1 if mouse is at top left corner
+        returns 2 if mouse is at top right corner
+        returns 3 if mouse is at bottom right corner
+        returns 4 if mouse is at bottom left corner
+        
+    {
+        Vector3 bottomLeft = new Vector3(0, 0);
+        Vector3 topRight = new Vector3(Screen.width, Screen.height);
+        Vector3 bottomRight = new Vector3(Screen.width, 0);
+        Vector3 topLeft = new Vector3(0, Screen.height);
+
+        Vector3 mousePos = Input.mousePosition;
+
+        if (mousePos == topLeft)
+            return 1;
+        if (mousePos == topRight)
+            return 2;
+        if (mousePos == bottomRight)
+            return 3;
+        if (mousePos == bottomLeft)
+            return 4;
+
+        return 0;
+    }
+    */
 
 	void Update ()
     {
-        //
         // MOVEMENT
 	    if(Input.GetKey(KeyCode.A)) // Move Left
         {
@@ -72,8 +114,23 @@ public class CameraController : MonoBehaviour
             }
         }
 
+        // check if mouse is on side of screen, and scroll accordingly
+        checkMousePos();
 
 
+        if (Input.mousePosition.y >= Screen.height * .98)
+        {
+            transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+        }
+
+        if (Input.mousePosition.y < Screen.height * .02)
+        {
+            transform.Translate(Vector3.back * movementSpeed * Time.deltaTime);
+        }
+
+
+
+        // end camera movement section
 
         // WAYPOINT SPAWNING
         if (Input.GetKeyDown(KeyCode.Mouse0))
