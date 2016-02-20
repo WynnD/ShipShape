@@ -9,7 +9,6 @@ public class ShipShooting : MonoBehaviour
     public float x_dest;
     public float z_dest;
     public float y_height = 8.19F;
-    Vector3 vector = new Vector3(x, , camera.ScreenToWorldPoint());
     Camera maincam;
 
 
