@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     public float movementSpeed;
     public float rotateSpeed;
     public GameObject waypoint;
+    public GameObject aimWaypoint;
     public float rayDistance;
     public GameObject playerShip;
 
@@ -34,7 +35,6 @@ public class CameraController : MonoBehaviour
             transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
         if (Input.mousePosition.x < Screen.width * .02)
             transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
-
 
         return;
     }
@@ -71,6 +71,7 @@ public class CameraController : MonoBehaviour
 
         //MOVEMENT UP AND DOWN WITH SCROLL WHEEL
         var d = Input.GetAxis("Mouse ScrollWheel");
+
         if (d > 0f)
         {
             // scroll up
@@ -89,7 +90,7 @@ public class CameraController : MonoBehaviour
         }
 
         // check if mouse is on side of screen, and scroll accordingly
-        checkMousePos();
+        //checkMousePos();
 
 
         // end camera movement section
@@ -101,6 +102,7 @@ public class CameraController : MonoBehaviour
             {
                 if(clickedScript.wayPointEnabled == true) // move button has been pressed
                 {
+                    clickedScript.shootingEnabled = false;
                     Ray toMouse = Camera.main.ScreenPointToRay(Input.mousePosition); // the position of the mouse on the screen
                     RaycastHit rhInfo; // contains all of the information about the object clicked on. Including position and name.
                     bool didHit = Physics.Raycast(toMouse, out rhInfo, rayDistance);
@@ -126,7 +128,27 @@ public class CameraController : MonoBehaviour
                 //SHOOTING 
                 if(clickedScript.shootingEnabled)
                 {
+                    clickedScript.wayPointEnabled = false;
+                    Ray toMouse = Camera.main.ScreenPointToRay(Input.mousePosition); // the position of the mouse on the screen
+                    RaycastHit rhInfo; // contains all of the information about the object clicked on. Including position and name.
+                    bool didHit = Physics.Raycast(toMouse, out rhInfo, rayDistance);
 
+                    if (didHit) // if you clicked on something
+                    {
+                        if (rhInfo.collider.name == "Waypoint(Clone")
+                        {
+                            Debug.Log("TouchedWaypoint");
+                        }
+                        if (rhInfo.collider.name == "WaterPlane") // if you clicked on the water
+                        {
+                            Instantiate(aimWaypoint, rhInfo.point, Quaternion.identity); // create waypoint where you clicked
+                        }
+                        clickedScript.shootingEnabled = false;
+                    }
+                    else // you didnt click on anything
+                    {
+                        Debug.Log("Didn't hit anything");
+                    }
                 }
             }
         }

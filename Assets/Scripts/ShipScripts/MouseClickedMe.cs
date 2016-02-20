@@ -26,6 +26,7 @@ public class MouseClickedMe : MonoBehaviour
         {
             shipEnabled = false;
             wayPointEnabled = false;
+            shootingEnabled = false;
         }
     }
 
@@ -37,6 +38,7 @@ public class MouseClickedMe : MonoBehaviour
 
     public void MoveShipButtonPressed(bool clicked) // when you click the "move" button
     {
+        Debug.Log("Hit Move button");
         wayPointEnabled = true;
     }
 
@@ -45,8 +47,9 @@ public class MouseClickedMe : MonoBehaviour
         shipEnabled = false;
     }
 
-    public void ShootButtonPressed(bool clicked)
+    public void ShootButtonPressed(bool clicked) // when you click the "shoot" button
     {
-        shootingEnabled = !shootingEnabled;
+        Debug.Log("Hit the shoot button");
+        shootingEnabled = true;
     }
 }
