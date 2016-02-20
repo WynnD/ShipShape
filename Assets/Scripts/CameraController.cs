@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     void Start ()
     {
         clickedScript = playerShip.GetComponent<MouseClickedMe>(); // the ClickedMeScript
-        shipShooting = playerShip.GetComponent<ShipShooting>(); // the ClickedMeScript
+        shipShooting = playerShip.GetComponent<ShipShooting>(); // the shipShooting
 
     }
 
