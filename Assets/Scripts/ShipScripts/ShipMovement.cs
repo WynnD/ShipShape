@@ -61,5 +61,9 @@ public class ShipMovement : MonoBehaviour
         {
             movementDistance = 0;
         }
+        if(other.tag == "Ship")
+        {
+            movementDistance = 0;
+        }
     }
 }
