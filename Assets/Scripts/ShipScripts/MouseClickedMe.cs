@@ -30,26 +30,23 @@ public class MouseClickedMe : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    void OnMouseDown() // the ship was clicked on
     {
-        // this object was clicked - do something
         shipEnabled = true;
     }
 
     public void MoveShipButtonPressed(bool clicked) // when you click the "move" button
     {
-        Debug.Log("Hit Move button");
         wayPointEnabled = true;
     }
 
-    public void DisableShip()
+    public void DisableShip()  // ship is no longer selected
     {
         shipEnabled = false;
     }
 
     public void ShootButtonPressed(bool clicked) // when you click the "shoot" button
     {
-        Debug.Log("Hit the shoot button");
-        shootingEnabled = true;
+        shootingEnabled = true; // allows the player to shoot in a direction
     }
 }

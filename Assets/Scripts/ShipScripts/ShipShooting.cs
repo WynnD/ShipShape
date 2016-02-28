@@ -6,50 +6,8 @@ public class ShipShooting : MonoBehaviour
     //HANDLES SHIP SHOOTING
 
 
-    //Wynn Code here
-    /*
-    public MouseClickedMe clickedScript;
-    public GameObject shell = GameObject.Find("Shell");
-    int power;
-    public float x_dest;
-    public float z_dest;
-    public float y_height = 8.19F;
-
-    Camera maincam;
-
-    // get mouse position
-    Ray getMouseLocation()
-    {
-        maincam = Camera.main;
-        Ray ret = maincam.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-
-        return ret;
-    }
-
-    void Start ()
-    {
-        shell.SetActive(true); // activate shell
-
-    }
-
-    void Update ()
-    {
-        if (clickedScript.shipEnabled == true) // if the ship is selected
-        {
-
-        }        
-    }*/
-
-
-
-    //JUSTIN CODE HERE
-
-
-
-
-
-
-
+    public int cannons;
+    public GameObject cannonBall;
     private MouseClickedMe clickedScript;
 
 
@@ -58,18 +16,29 @@ public class ShipShooting : MonoBehaviour
         clickedScript = this.gameObject.GetComponent<MouseClickedMe>(); // the ClickedMeScript
     }
 
+    void shoot()
+    {
+        StartCoroutine(shootAsync());
+    }
+
+    IEnumerator shootAsync()
+    {
+        for (int i = 0; i < cannons; i++) // shoot cannons
+        {
+            Instantiate(cannonBall, transform.position, transform.rotation); // create cannonball
+            yield return new WaitForSeconds(Random.Range(0.1f,0.5f)); // wait to fire next cannonball
+        }
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("Mouse Clicked");
             if (clickedScript.shipEnabled == true) // if the ship is selected
             {
-                Debug.Log("Ship Enabled");
                 if (clickedScript.shootingEnabled == true) // shoot button has been pressed
                 {
-                    Debug.Log("Ship enabled and able to fire");
+                    shoot();
                 }
             }
         }
