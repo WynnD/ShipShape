@@ -5,19 +5,29 @@ public class Enemy_Test : MonoBehaviour
 {
     public int health;
     public float sinkSpeed;
+    public int detect_range;
+    public MeshRenderer[] renderers;
+    public bool visible;
+    public FogOfWar fow_script;
+
 
     void Start()
     {
-
+        renderers = this.gameObject.GetComponentsInChildren<MeshRenderer>();
+        fow_script = this.gameObject.GetComponent<FogOfWar>();
     }
 
 
-    void Update()
+void Update()
     {
         if (health <= 0)
         {
             Sink();
         }
+
+
+        foreach (MeshRenderer rend in renderers)
+            rend.enabled = visible;
     }
 
     void Sink()

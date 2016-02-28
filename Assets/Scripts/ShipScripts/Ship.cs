@@ -8,6 +8,7 @@ public class Ship : MonoBehaviour {
     protected int health, speed, power, x_pos, z_pos;
     protected GameObject the_ship;
     protected string prefab_location;
+    protected Renderer render;
 
     // Use this for initialization
     void Start()
