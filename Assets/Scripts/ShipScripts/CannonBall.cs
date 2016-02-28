@@ -8,6 +8,9 @@ public class CannonBall : MonoBehaviour
     public Rigidbody rb;
     public float speed;
     public GameObject explosion;
+    public float innacuracyRating;
+
+    private Vector3 randomDir;
 
 
 	void Start ()
@@ -16,8 +19,19 @@ public class CannonBall : MonoBehaviour
         rb = this.gameObject.GetComponent<Rigidbody>();
 
         transform.LookAt(aimWayPoint.transform);
+
+        transform.Rotate(
+            Random.Range(-innacuracyRating, innacuracyRating),
+            Random.Range(-innacuracyRating, innacuracyRating),
+            Random.Range(-innacuracyRating, innacuracyRating));
+
         rb.AddRelativeForce(Vector3.forward * speed);
 	}
+
+    void Update()
+    {
+        Destroy(this.gameObject, 5);
+    }
 
 
     void OnCollisionEnter(Collision other)

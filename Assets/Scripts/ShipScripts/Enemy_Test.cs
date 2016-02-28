@@ -4,6 +4,7 @@ using System.Collections;
 public class Enemy_Test : MonoBehaviour
 {
     public int health;
+    public float sinkSpeed;
 
     void Start()
     {
@@ -15,8 +16,15 @@ public class Enemy_Test : MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(this.gameObject);
+            Sink();
         }
+    }
+
+    void Sink()
+    {
+        //sink the ship
+        transform.Translate(Vector3.down * sinkSpeed * Time.deltaTime);
+        Destroy(this.gameObject, 30);
     }
 
     void OnCollisionEnter(Collision other)
