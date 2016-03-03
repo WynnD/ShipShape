@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
     //KEEPS TRACK OF RANDOM GOINGS ON IN THE LEVEL
 
     public bool p1Turn;
+    private int startLoc1, startLoc2;
     public GameObject[] p1Ships; //active p1 ships in the scene
     public GameObject[] p2Ships; //active p2 ships in the scene
 

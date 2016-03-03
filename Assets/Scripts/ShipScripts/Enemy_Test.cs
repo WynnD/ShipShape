@@ -8,13 +8,12 @@ public class Enemy_Test : MonoBehaviour
     public int detect_range;
     public MeshRenderer[] renderers;
     public bool visible;
-    public FogOfWar fow_script;
 
 
     void Start()
     {
         renderers = this.gameObject.GetComponentsInChildren<MeshRenderer>();
-        fow_script = this.gameObject.GetComponent<FogOfWar>();
+        FogOfWar fow_script = this.gameObject.GetComponent<FogOfWar>();
     }
 
 
