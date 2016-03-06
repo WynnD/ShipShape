@@ -59,7 +59,7 @@ public class InitializeShips : LevelManager
             switch (ship)
             {
                 default:
-                    prefab_filename = "TestShip_wynn.prefab";
+                    prefab_filename = "TestShip_2.prefab";
                     break;
             }
             prefab = AssetDatabase.LoadAssetAtPath(
