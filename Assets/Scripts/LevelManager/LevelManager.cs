@@ -4,11 +4,12 @@ using System.Collections;
 public class LevelManager : MonoBehaviour
 {
     //KEEPS TRACK OF RANDOM GOINGS ON IN THE LEVEL
-
+    protected float water_height = 8.19F;
     public bool p1Turn;
     private int startLoc1, startLoc2;
     public GameObject[] p1Ships; //active p1 ships in the scene
     public GameObject[] p2Ships; //active p2 ships in the scene
+    protected InitializeShips initializer;
 
 
 
@@ -17,6 +18,7 @@ public class LevelManager : MonoBehaviour
         p1Turn = true;
         p1Ships = GameObject.FindGameObjectsWithTag("P1Ship");
         p2Ships = GameObject.FindGameObjectsWithTag("P2Ship");
+        initializer = GetComponent<InitializeShips>();
     }
 	
 
